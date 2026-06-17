@@ -12,8 +12,8 @@
     <artifactId>saucedemo.com</artifactId>
 
     <properties>
-        <maven.compiler.source>26</maven.compiler.source>
-        <maven.compiler.target>26</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
@@ -24,23 +24,64 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.13</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>6.1.0</version>
+            <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>6.1.0</version>
+            <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
-            <version>6.1.0</version>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <version>2.27.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.2.5</version>
+            <configuration>
+                <argLine>
+                    -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.22/aspectjweaver-1.9.22.jar"
+                </argLine>
+                <systemPropertyVariables>
+                    <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                </systemPropertyVariables>
+            </configuration>
+            <dependencies>
+                <dependency>
+                    <groupId>org.aspectj</groupId>
+                    <artifactId>aspectjweaver</artifactId>
+                    <version>1.9.22</version>
+                </dependency>
+            </dependencies>
+        </plugin>
+        <plugin>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>2.12.0</version>
+        </plugin>
+    </plugins>
+    </build>
 
 </project>
