@@ -13,6 +13,7 @@ on:
 jobs:
   run-tests:
     runs-on: ubuntu-22.04
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -24,12 +25,13 @@ jobs:
         distribution: 'temurin'
         cache: 'maven'
 
-    - name: Verify Java version
+    - name: Verify Java and Maven version
       run: |
-          java --version
-          mvn --version
+        java --version
+        mvn --version
 
     - name: Download Maven dependencies
+      working-directory: demo-realworld-show
       run: mvn -B dependency:resolve
 
     - name: Install Playwright Browsers
@@ -38,4 +40,6 @@ jobs:
 
     - name: Run Playwright Tests
       working-directory: demo-realworld-show
-      run: mvn test
+      run: |
+        mvn clean
+        mvn test
