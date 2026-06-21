@@ -12,7 +12,7 @@ on:
 
 jobs:
   run-tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout repository
@@ -24,12 +24,7 @@ jobs:
         java-version: '25'
         distribution: 'temurin'
         cache: 'maven'
-
-    - name: Install system dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y libasound2 libffi7 libx264-163
-
+   
     - name: Install Playwright Browsers
       working-directory: demo-realworld-show
       run: mvn exec:java -Dexec.mainClass="com.microsoft.playwright.CLI" -Dexec.args="install --with-deps"
