@@ -43,4 +43,4 @@ jobs:
       working-directory: demo-realworld-show
       run: |
         mvn clean
-        mvn test
+        mvn test -DHEADLESS=true
