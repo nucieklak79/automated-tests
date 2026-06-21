@@ -31,13 +31,16 @@ jobs:
           mvn --version
 
       - name: Download Maven dependencies
+	working-directory: demo-realworld-show
         run: mvn -B dependency:resolve
 
       - name: Install Playwright browsers
+	working-directory: demo-realworld-show
         run: |
           mvn exec:java \
             -Dexec.mainClass=com.microsoft.playwright.CLI \
             -Dexec.args="install --with-deps chromium"
 
       - name: Run tests
+	working-directory: demo-realworld-show
         run: mvn -B test
