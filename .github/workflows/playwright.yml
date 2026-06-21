@@ -9,6 +9,7 @@ on:
     branches: [ main, master ]
     paths:
       - 'demo-realworld-show/**'
+  workflow_dispatch:
 
 jobs:
   run-tests:
