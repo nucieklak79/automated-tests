@@ -31,7 +31,6 @@ jobs:
           mvn --version
 
       - name: Download Maven dependencies
-	working-directory: demo-realworld-show
         run: mvn -B dependency:resolve
 
       - name: Install Playwright browsers
