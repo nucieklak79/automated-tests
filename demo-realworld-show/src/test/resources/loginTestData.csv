@@ -1,0 +1,4 @@
+username, password, expectedMessage
+badUser, badPassword, credentials invalid
+norbert_test@test.pl, badPassword, credentials invalid
+badUser, Pass1234, credentials invalid

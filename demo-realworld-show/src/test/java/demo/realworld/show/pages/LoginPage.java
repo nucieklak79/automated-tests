@@ -20,4 +20,7 @@ public class LoginPage {
         passwordInput.fill(password);
         signInButton.click();
     }
+    public String getErrorMessage() {
+        return page.locator(".error-messages > li").textContent();
+    }
 }

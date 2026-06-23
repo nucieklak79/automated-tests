@@ -3,10 +3,7 @@ package demo.realworld.show.tests;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 import demo.realworld.show.base.BaseTest;
-import demo.realworld.show.pages.EditorPage;
-import demo.realworld.show.pages.LoginPage;
-import demo.realworld.show.pages.MainPage;
-import demo.realworld.show.pages.UserPage;
+import demo.realworld.show.pages.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,5 +30,11 @@ public class NewArticleTest extends BaseTest {
 
         //Then
         assertThat(page.getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName(articleTitle)));
+
+        //TearDown published article
+        page.getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName(articleTitle)).click();
+        ArticlePage articlePage = new ArticlePage(page);
+        articlePage.deleteArticle();
+        assertThat(page.getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName(articleTitle))).not().isVisible();
     }
 }
