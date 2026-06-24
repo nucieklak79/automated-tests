@@ -11,7 +11,18 @@ public class ArticlePage {
         this.page = page;
         this.deleteArticleButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(" Delete Article"));
     }
+
     public void deleteArticle() {
         deleteArticleButton.first().click();
     }
+
+    public void addComment(String commentText) {
+        page.getByPlaceholder("Write a comment...").fill(commentText);
+        page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Post Comment")).click();
+    }
+
+    public boolean isCommentVisible(String commentText) {
+        return page.getByText(commentText).isVisible();
+    }
 }
+
