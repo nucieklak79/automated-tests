@@ -13,31 +13,13 @@ on:
 
 jobs:
   run-tests:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright/java:v1.49.0-noble
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-
-    - name: Set up JDK 25
-      uses: actions/setup-java@v4
-      with:
-        java-version: '25'
-        distribution: 'temurin'
-        cache: 'maven'
-
-    - name: Verify Java and Maven version
-      run: |
-        java --version
-        mvn --version
-
-    - name: Download Maven dependencies
-      working-directory: demo-realworld-show
-      run: mvn -B dependency:resolve
-
-    - name: Install Playwright Browsers
-      working-directory: demo-realworld-show
-      run: mvn exec:java -Dexec.mainClass="com.microsoft.playwright.CLI" -Dexec.args="install --with-deps"
 
     - name: Run Playwright Tests
       working-directory: demo-realworld-show
