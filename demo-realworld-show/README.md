@@ -30,3 +30,9 @@ The framework is designed for easy maintenance and scalability:
 To run the entire test suite locally, execute the following command:
 ```bash
 mvn clean test
+```
+### Allure Report (Terminal)
+To see Allure report locally, execute the following command:
+```bash
+mvn allure:serve
+```
